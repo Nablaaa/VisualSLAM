@@ -2,14 +2,10 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-from sklearn.metrics import confusion_matrix
-
-from bokeh.models.widgets import Panel, Tabs
 from bokeh.io import output_file, show
 from bokeh.plotting import figure, ColumnDataSource
-from bokeh.layouts import column, layout, gridplot
-from bokeh.models import Div, WheelZoomTool
-from bokeh.models.widgets import Panel, Tabs
+from bokeh.layouts import layout, gridplot
+from bokeh.models import Div
 
 
 def visualize_paths(gt_path, pred_path, html_tile="", title="VO exercises", file_out="plot.html"):
@@ -31,7 +27,7 @@ def visualize_paths(gt_path, pred_path, html_tile="", title="VO exercises", file
                                         disx=xs, disy=ys))
 
     fig1 = figure(title="Paths", tools=tools, match_aspect=True, width_policy="max", toolbar_location="above",
-                  x_axis_label="x", y_axis_label="y")
+                  x_axis_label="x", y_axis_label="z")
     fig1.circle("gtx", "gty", source=source, color="blue", hover_fill_color="firebrick", legend_label="GT")
     fig1.line("gtx", "gty", source=source, color="blue", legend_label="GT")
 

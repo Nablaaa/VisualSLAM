@@ -1,15 +1,9 @@
 import os
 import numpy as np
 import cv2
-from pandas import describe_option
 from scipy.optimize import least_squares
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-from lib.visualization import plotting
-from lib.visualization.video import play_trip
 
 from tqdm import tqdm
-from pprint import pprint
 
 import bag_of_words
 
@@ -20,12 +14,12 @@ class VisualOdometry():
     def __init__(self, data_dir):
         
         print("Loading Images")
-        self.K_l, self.P_l, self.K_r, self.P_r = self._load_calib("C:/Users/45213/Downloads/data_odometry_gray/dataset/sequences/07/calib.txt")
-        self.gt_poses = self._load_poses("C:/Users/45213/Downloads/data_odometry_poses/dataset/poses/07.txt")
+        self.K_l, self.P_l, self.K_r, self.P_r = self._load_calib("KITTI_sequence_2/calib.txt")
+        self.gt_poses = self._load_poses("KITTI_sequence_2/poses.txt")
         #self.images_l = self._load_images("C:/Users/45213/OneDrive/Desktop/sequence3/images_l")
         #self.images_r = self._load_images("C:/Users/45213/OneDrive/Desktop/sequence3/images_r")
-        self.images_l = self._load_images("C:/Users/45213/Downloads/data_odometry_gray/dataset/sequences/07/image_0")
-        self.images_r = self._load_images("C:/Users/45213/Downloads/data_odometry_gray/dataset/sequences/07/image_1")
+        self.images_l = self._load_images("KITTI_sequence_2/image_l")
+        self.images_r = self._load_images("KITTI_sequence_2/image_r")
 
         print("Number of left images: ", len(self.images_l))
         print("Number of right images: ", len(self.images_r))
@@ -448,7 +442,7 @@ class VisualOdometry():
 
 
 def main():
-    data_dir = 'KITTI_sequence_1'  # Try KITTI_sequence_2
+    data_dir = 'KITTI_sequence_2'  # Try KITTI_sequence_2
     vo = VisualOdometry(data_dir)
 
     #play_trip(vo.images_l, vo.images_r)  # Comment out to not play the trip

@@ -31,7 +31,7 @@ class BoW:
         self.frames_under_threshold = 2
 
         
-        with open("BagOfWordsKmeans.pkl", "rb") as f:
+        with open("BagOfWordsKmeans2.pkl", "rb") as f:
             self.kmeans = pickle.load(f)
 
         with open("tf_idf_means.pkl", "rb") as f:
